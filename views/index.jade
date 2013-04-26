@@ -1,5 +1,44 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+!!!
+html(ng-app="myApp")
+  head
+    meta(charset='utf8')
+    base(href='/')
+    title Wheredoesmymoneygo (Taiwan)
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+  body
+    div.container
+      div.row-fluid
+        div.span12
+          div.navbar
+            div.navbar-inner
+              a.brand(href='/') Wheredoesmymoneygo
+              ul.nav
+                li.active
+                  a(href='#feature') 特選內容
+                li
+                  a(href='#graph') 資料圖表
+      div.row-fluid
+        div.span12
+          div.hero-unit
+            h1 Where does my money go ?
+            p This is site of wheredoesmymoneygo.org Taiwan version, developing by volunteers. Welcome to find something you interesting and join us to make more sence for mass.
+            p
+              a.btn.btn-primary.btn-large
+                i.icon-question-sign.icon-white
+                |  Learn More
+      div.row-fluid
+        div.span4
+          h2 Tax
+          p Tax is government the most income source, knowing about types of government income.
+        div.span4
+          h2 Education
+          p Education for our children, does it effecient ?
+          p.text-center
+            img.img-polaroid(src='//placehold.it/250x200')
+        div.span4
+          h2 Energy
+          p Does we should still depending necular ?
+          p.text-center
+            img(src='/img/lamp.png')
+  script(src='/javascripts/bootstrap.min.js')
+  script(src='/javascripts/angular.min.js')
