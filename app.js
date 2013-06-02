@@ -4,11 +4,11 @@
  */
 
 var express = require('express')
-  , main = require('./routes/main.js')
+  , routes = require('./routes/main.js')
   , http = require('http')
   , path = require('path');
 
-var app = express();
+var app = module.exports = express();
 
 // all environments
 app.configure(function(){
@@ -21,19 +21,19 @@ app.configure(function(){
 	app.use(express.methodOverride());
 	app.use(express.cookieParser('your secret here'));
 	app.use(express.session());
-	app.use(app.router);
 	app.use(express.static(path.join(__dirname, 'public')));
+	app.use(app.router);
 });
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', main.index);
-app.get('/partials/:name', main.partials);
+app.get('/', routes.index);
+app.get('/partials/:name', routes.partials);
 
-//app.get('*', main.index);
+app.get('*', routes.index);
 
-http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(app.get('port'), function(req,res){
   console.log('Express server listening on port ' + app.get('port'));
 });
